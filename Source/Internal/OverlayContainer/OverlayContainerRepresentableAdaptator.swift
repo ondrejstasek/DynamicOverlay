@@ -22,7 +22,7 @@ struct OverlayContainerRepresentableAdaptator<Content: View, Background: View> {
         }
     }
 
-    let searchsScrollView: Bool
+    let inspectionView: DrivingScrollViewInspectionView?
     let handleValue: DynamicOverlayDragHandle
     let behavior: DynamicOverlayBehaviorValue
     let content: Content
@@ -34,7 +34,7 @@ struct OverlayContainerRepresentableAdaptator<Content: View, Background: View> {
 
     private var containerState: OverlayContainerState {
         OverlayContainerState(
-            searchsScrollView: searchsScrollView,
+            inspectionView: inspectionView,
             notchIndex: behavior.binding?.wrappedValue,
             disabledNotches: behavior.disabledNotchIndexes,
             layout: OverlayContainerLayout(indexToDimension: behavior.notchDimensions ?? [:])

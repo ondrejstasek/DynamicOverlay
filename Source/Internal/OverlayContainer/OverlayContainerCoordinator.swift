@@ -14,7 +14,7 @@ struct OverlayContainerLayout: Equatable {
 }
 
 struct OverlayContainerState: Equatable {
-    let searchsScrollView: Bool
+    let inspectionView: DrivingScrollViewInspectionView?
     let notchIndex: Int?
     let disabledNotches: Set<Int>
     let layout: OverlayContainerLayout
@@ -44,7 +44,12 @@ class OverlayContainerCoordinator {
          animationController: OverlayAnimatedTransitioning,
          background: UIViewController,
          content: UIViewController) {
-        self.state = State(searchsScrollView: false, notchIndex: nil, disabledNotches: [], layout: layout)
+        self.state = State(
+            inspectionView: nil,
+            notchIndex: nil,
+            disabledNotches: [],
+            layout: layout
+        )
         self.animationController = animationController
         self.background = background
         self.content = content
@@ -64,9 +69,9 @@ class OverlayContainerCoordinator {
         if let index = state.notchIndex, index != previous.notchIndex {
             container.moveOverlay(toNotchAt: index, animated: animated)
         }
-        if state.searchsScrollView {
+        if let view = state.inspectionView {
             CATransaction.setCompletionBlock { [weak self] in
-                container.drivingScrollView = self?.content.view.findScrollView()
+                container.drivingScrollView = view.findScrollViewInParent()
             }
         } else {
             container.drivingScrollView = nil
@@ -144,7 +149,7 @@ private extension OverlayContainerState {
 
     func withNewNotch(_ notch: Int) -> OverlayContainerState {
         OverlayContainerState(
-            searchsScrollView: searchsScrollView,
+            inspectionView: inspectionView,
             notchIndex: notch,
             disabledNotches: disabledNotches,
             layout: layout
@@ -154,15 +159,10 @@ private extension OverlayContainerState {
 
 private extension UIView {
 
-    func findScrollView() -> UIScrollView? {
+    func findScrollViewInParent() -> UIScrollView? {
         if let scrollView = self as? UIScrollView {
             return scrollView
         }
-        for subview in subviews {
-            if let target = subview.findScrollView() {
-                return target
-            }
-        }
-        return nil
+        return superview?.findScrollViewInParent()
     }
 }

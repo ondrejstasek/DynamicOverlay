@@ -44,11 +44,53 @@ struct DynamicOverlayDragHandlePreferenceKey: PreferenceKey {
     }
 }
 
+class DrivingScrollViewInspectionView: UIView {
+
+    // MARK: - Life Cycle
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setUp()
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        setUp()
+    }
+
+    // MARK: - Private
+
+    private func setUp() {
+        isUserInteractionEnabled = false
+        isHidden = true
+    }
+}
+
+struct DynamicOverlayDrivingScrollViewHandle: Equatable {
+
+    private(set) var isActive: Bool
+    private(set) var view: DrivingScrollViewInspectionView?
+
+    mutating func merge(_ handle: DynamicOverlayDrivingScrollViewHandle) {
+        guard handle.isActive else { return }
+        self.isActive = true
+        self.view = handle.view
+    }
+
+    static var `default`: DynamicOverlayDrivingScrollViewHandle {
+        .inactive()
+    }
+
+    static func inactive() -> DynamicOverlayDrivingScrollViewHandle {
+        DynamicOverlayDrivingScrollViewHandle(isActive: false, view: nil)
+    }
+}
+
 struct DynamicOverlayScrollPreferenceKey: PreferenceKey {
 
-    static var defaultValue = false
+    static var defaultValue: DynamicOverlayDrivingScrollViewHandle = .inactive()
 
-    static func reduce(value: inout Bool, nextValue: () -> Bool) {
-        value = nextValue() ? true : value
+    static func reduce(value: inout DynamicOverlayDrivingScrollViewHandle, nextValue: () -> DynamicOverlayDrivingScrollViewHandle) {
+        value.merge(nextValue())
     }
 }
