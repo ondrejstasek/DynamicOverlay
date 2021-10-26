@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "OverlayContainer",
+        "repositoryURL": "https://github.com/ondrejstasek/OverlayContainer.git",
+        "state": {
+          "branch": null,
+          "revision": "a8fc579033e52f953ecd9326e2c67f35e523b800",
+          "version": "3.5.2"
+        }
+      }
+    ]
+  },
+  "version": 1
+}

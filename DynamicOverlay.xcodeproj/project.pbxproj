@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5D20E31D27284225000336C6 /* OverlayContainer in Frameworks */ = {isa = PBXBuildFile; productRef = 5D20E31C27284225000336C6 /* OverlayContainer */; };
 		E7310E6E2599E0C200865422 /* DynamicOverlayContainerAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7310E6D2599E0C200865422 /* DynamicOverlayContainerAnimationController.swift */; };
 		E7310E73259A102E00865422 /* DragHandleViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7310E72259A102E00865422 /* DragHandleViewModifier.swift */; };
 		E7310E77259A10AB00865422 /* DrivingScrollViewViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7310E76259A10AB00865422 /* DrivingScrollViewViewModifier.swift */; };
@@ -36,8 +37,6 @@
 		E782E5682628939600CC1FC6 /* NotchTranslationDynamicOverlayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E782E5622628937000CC1FC6 /* NotchTranslationDynamicOverlayTests.swift */; };
 		E782E5712628997E00CC1FC6 /* ValuePublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = E782E56B2628996600CC1FC6 /* ValuePublisher.swift */; };
 		E7923CFB26AB1BA50028F6A1 /* OverlayContainerStateDiffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7923CFA26AB1BA50028F6A1 /* OverlayContainerStateDiffer.swift */; };
-		E7A320CA2600E7530020C3AA /* OverlayContainer.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7A320AC2600DFE70020C3AA /* OverlayContainer.xcframework */; platformFilter = ios; };
-		E7A320CB2600E7530020C3AA /* OverlayContainer.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E7A320AC2600DFE70020C3AA /* OverlayContainer.xcframework */; platformFilter = ios; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E7B68A022621C30C00AEE7DD /* NotchBindingDynamicOverlayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B689FD2621C2C800AEE7DD /* NotchBindingDynamicOverlayTests.swift */; };
 		E7B68A0C262320E900AEE7DD /* DragHandleFrameReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B68A0B262320E900AEE7DD /* DragHandleFrameReader.swift */; };
 		E7BFED842629CC8000C1EE2D /* ViewInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BFED832629CC8000C1EE2D /* ViewInspector.swift */; };
@@ -68,20 +67,6 @@
 			remoteInfo = TestHostApplication;
 		};
 /* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		E7A320CC2600E7530020C3AA /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				E7A320CB2600E7530020C3AA /* OverlayContainer.xcframework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		E7310E6D2599E0C200865422 /* DynamicOverlayContainerAnimationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicOverlayContainerAnimationController.swift; sourceTree = "<group>"; };
@@ -139,7 +124,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E7A320CA2600E7530020C3AA /* OverlayContainer.xcframework in Frameworks */,
+				5D20E31D27284225000336C6 /* OverlayContainer in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -333,13 +318,15 @@
 				E7691542222EA71F00FDEE7F /* Sources */,
 				E7691543222EA71F00FDEE7F /* Frameworks */,
 				E7691544222EA71F00FDEE7F /* Resources */,
-				E7A320CC2600E7530020C3AA /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = DynamicOverlay;
+			packageProductDependencies = (
+				5D20E31C27284225000336C6 /* OverlayContainer */,
+			);
 			productName = DynamicOverlay;
 			productReference = E7691546222EA71F00FDEE7F /* DynamicOverlay.framework */;
 			productType = "com.apple.product-type.framework";
@@ -412,6 +399,9 @@
 				Base,
 			);
 			mainGroup = E769153C222EA71F00FDEE7F;
+			packageReferences = (
+				5D20E31B27284225000336C6 /* XCRemoteSwiftPackageReference "OverlayContainer" */,
+			);
 			productRefGroup = E7691547222EA71F00FDEE7F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -827,6 +817,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		5D20E31B27284225000336C6 /* XCRemoteSwiftPackageReference "OverlayContainer" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ondrejstasek/OverlayContainer";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.5.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		5D20E31C27284225000336C6 /* OverlayContainer */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5D20E31B27284225000336C6 /* XCRemoteSwiftPackageReference "OverlayContainer" */;
+			productName = OverlayContainer;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = E769153D222EA71F00FDEE7F /* Project object */;
 }

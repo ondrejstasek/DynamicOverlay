@@ -1,4 +1,4 @@
-// swift-tools-version:5.1
+// swift-tools-version:5.5
 import PackageDescription
 
 let package = Package(
@@ -13,13 +13,16 @@ let package = Package(
         ),
     ],
     dependencies: [
-        .package(url: "https://github.com/applidium/OverlayContainer.git", from: "3.5.1")
+        .package(url: "https://github.com/ondrejstasek/OverlayContainer.git", from: "3.5.2")
     ],
     targets: [
         .target(
             name: "DynamicOverlay",
             dependencies: ["OverlayContainer"],
-            path: "Source"
+            path: "Source",
+            exclude:[
+                "Info.plist"
+            ]
         ),
     ],
     swiftLanguageVersions: [.v5]
