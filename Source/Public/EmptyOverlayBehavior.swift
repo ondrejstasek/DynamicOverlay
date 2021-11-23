@@ -10,6 +10,8 @@ import Foundation
 
 public struct EmptyOverlayBehavior: DynamicOverlayBehavior {
 
+    public init() {}
+
     public func makeModifier() -> AddDynamicOverlayBehaviorModifier {
         AddDynamicOverlayBehaviorModifier(
             value: DynamicOverlayBehaviorValue()
