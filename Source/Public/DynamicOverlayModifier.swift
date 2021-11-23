@@ -29,6 +29,11 @@ public extension View {
     func dynamicOverlayBehavior<Behavior: DynamicOverlayBehavior>(_ behavior: Behavior) -> some View {
         modifier(behavior.makeModifier())
     }
+
+    /// Type-erased version of `dynamicOverlayBehavior`
+    func dynamicOverlayBehavior(_ behavior: AnyDynamicOverlayBehavior) -> some View {
+        modifier(behavior.makeModifier())
+    }
 }
 
 public struct AddDynamicOverlayModifier<Overlay: View>: ViewModifier {

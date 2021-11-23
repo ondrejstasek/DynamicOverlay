@@ -12,4 +12,14 @@ import SwiftUI
 public protocol DynamicOverlayBehavior {
 
     func makeModifier() -> AddDynamicOverlayBehaviorModifier
+
+    func eraseToAnyDynamicOverlayBehavior() -> AnyDynamicOverlayBehavior
+}
+
+public extension DynamicOverlayBehavior {
+
+    func eraseToAnyDynamicOverlayBehavior() -> AnyDynamicOverlayBehavior {
+        return AnyDynamicOverlayBehavior(self)
+    }
+
 }
